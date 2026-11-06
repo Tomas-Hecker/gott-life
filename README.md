@@ -13,6 +13,7 @@ reines HTML mit einer `style.css`, keine Skripte, keine Cookies, nichts von frem
 
 ## Veröffentlichen mit GitHub Pages
 
-Im Repository unter Settings → Pages bei „Build and deployment“ die Quelle „Deploy from a branch“
-wählen, Branch `main`, Ordner `/ (root)`. Die Datei `.nojekyll` sorgt dafür, dass GitHub die Dateien
-unverändert ausliefert. Eine eigene Adresse lässt sich später unter „Custom domain“ eintragen.
+GitHub Pages veröffentlicht die Seite aus dem Branch `gh-pages`, Ordner `/ (root)`.
+`main` und `gh-pages` tragen denselben Stand, Änderungen gehen in beide. Die Datei `.nojekyll`
+sorgt dafür, dass GitHub die Dateien unverändert ausliefert. Eine eigene Adresse steht in einer
+Datei `CNAME` im Hauptordner oder unter Settings → Pages bei „Custom domain“.
