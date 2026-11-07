@@ -7,7 +7,8 @@ reines HTML mit einer `style.css`, keine Skripte, keine Cookies, nichts von frem
 
 - `index.html`: Startseite mit beiden Büchern, Perle, Angeboten für Gemeinden, Über Tomas
 - `bis-er-es-findet/`: das neue Buch, dazu `vorwort.html` als Leseprobe
-- `darf-ich-dein-herz-entzuenden/`: das erste Buch mit drei Gedichten als Leseprobe und Bestellung
+- `darf-ich-dein-herz-entzuenden/`: das erste Buch mit drei Gedichten und Bestellung,
+  in `text/` das ganze Buch als Text (eine Seite je Gedicht oder Text)
 - `hilfe.html`, `impressum.html`, `datenschutz.html`
 - `fonts/` (EB Garamond, Inter; SIL Open Font License), `img/` (Umschläge), `favicon.svg`
 
