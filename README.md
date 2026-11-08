@@ -9,7 +9,7 @@ HTML mit einer `style.css` und einem kleinen eigenen Skript zum Blättern (`lese
 - `bis-er-es-findet/`: das neue Buch, dazu `vorwort.html` als Leseprobe
 - `darf-ich-dein-herz-entzuenden/`: das erste Buch mit drei Gedichten und Bestellung,
   in `text/` das ganze Buch als Text (eine Seite je Gedicht oder Text),
-  `lesen.html` zum Blättern (Seitenbilder in `seiten/`) und das PDF
+  `lesen.html` zum Blättern (Seiten als Vektorgrafik in `seiten/`, mit Links) und das PDF mit Links und Lesezeichen
 - `hilfe.html`, `impressum.html`, `datenschutz.html`
 - `fonts/` (EB Garamond, Inter; SIL Open Font License), `img/` (Umschläge), `favicon.svg`
 

@@ -7,6 +7,7 @@
   const $ = id => document.getElementById(id);
   const track = $('track'), slider = $('slider'), count = $('zaehler'), toc = $('inhaltWrap');
   const textLink = $('alsText'), zoom = $('zoom'), zoomScroll = $('zoomScroll'), zoomImg = $('zoomImg');
+  const zoomPg = $('zoomPg');
   const hint = $('hint'), fsBtn = $('vollbild');
   const total = +L.dataset.seiten, zoomMin = +L.dataset.zoom || 0;
   const reduceQ = matchMedia('(prefers-reduced-motion: reduce)');
@@ -131,13 +132,17 @@
     if (!img) return;
     const link = img.closest('a');
     const ratio = img.getAttribute('height') / img.getAttribute('width');
-    const big = +(link.href.match(/-(\d+)\.webp/) || [0, 1600])[1];
+    // Vektorseiten (SVG) sind in jeder Größe scharf, Bilder nur bis zu ihrer Breite
+    const big = /\.svg$/.test(link.getAttribute('href')) ? Infinity : +(link.href.match(/-(\d+)\.webp/) || [0, 1600])[1];
     const w = Math.round(Math.max(zoomMin, Math.min(big, L.clientWidth)));
     const h = Math.round(w * ratio);
     zoomImg.width = w; zoomImg.height = h;
     zoomImg.style.width = w + 'px'; zoomImg.style.height = h + 'px';
     zoomImg.src = link.href;
     zoomImg.alt = img.alt + ', vergrößert';
+    for (const alt of zoomPg.querySelectorAll('svg')) alt.remove();
+    const links = img.closest('.r-pgwrap') && img.closest('.r-pgwrap').querySelector('svg.r-links');
+    if (links) zoomPg.append(links.cloneNode(true));
     zoom.hidden = false;
     requestAnimationFrame(() => {
       zoomScroll.scrollLeft = Math.max(0, fx * w - zoomScroll.clientWidth / 2);
@@ -176,6 +181,26 @@
     if (p) openZoom(p.querySelector('img'), .5, .3);
   });
   zoomImg.addEventListener('click', closeZoom);
+
+  /* Links auf den Seiten: Verweise im Buch blättern dorthin, Bibelstellen und Quellen öffnen einen neuen Tab */
+  L.addEventListener('click', e => {
+    const a = e.target.closest('.r-links a');
+    const m = a && /^#seite-(\d+)$/.exec(a.getAttribute('href') || '');
+    if (!m) return;
+    e.preventDefault();
+    closeZoom();
+    try { history.pushState(null, '', '#seite-' + m[1]); } catch (err) { /* z. B. in einer Vorschau */ }
+    goTo(sheetOfPage(+m[1]), false);
+    track.focus({ preventScroll: true });
+  });
+  // Ist die Seite zu klein zum Lesen (Handy), vergrößert ein Tippen sie; die Links gibt es dann in der Vergrößerung.
+  function linkMode() {
+    const img = track.querySelector('.r-pgwrap .r-pg'), svg = track.querySelector('svg.r-links');
+    if (!img || !svg || !img.offsetWidth) return;
+    const iw = +img.getAttribute('width'), ih = +img.getAttribute('height');
+    const s = Math.min(img.offsetWidth / iw, img.offsetHeight / ih) * iw / svg.viewBox.baseVal.width;
+    L.classList.toggle('r-klein', s < 0.7);
+  }
   $('zoomClose').addEventListener('click', closeZoom);
 
   /* Knöpfe und Regler */
@@ -233,10 +258,12 @@
     if (track.clientWidth === lastW && track.clientHeight === lastH) return;
     lastW = track.clientWidth; lastH = track.clientHeight;
     measure();
+    linkMode();
     goTo(sheetOfPage(curPage), false);
   }).observe(track);
 
   measure();
+  linkMode();
   lastW = track.clientWidth; lastH = track.clientHeight;
   goTo(sheetOfPage(fromHash()), false);
   track.focus({ preventScroll: true });
