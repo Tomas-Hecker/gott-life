@@ -27,6 +27,8 @@ body{margin:0;background:var(--papier);color:var(--tinte);font:400 1.1875rem/1.6
 img{max-width:100%;height:auto;display:block}
 a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.18em}
 a:hover{text-decoration-thickness:2px}
+a.bs{text-decoration-style:dotted;text-decoration-thickness:1px;text-underline-offset:.2em}
+a.bs:hover{text-decoration-style:solid}
 :focus-visible{outline:3px solid var(--moos);outline-offset:3px;border-radius:2px}
 h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.12;margin:0;text-wrap:balance}
 h1{font-size:clamp(2.5rem,1.5rem + 4vw,4.25rem);letter-spacing:-.01em}
@@ -302,6 +304,30 @@ sup.fn .ohne{color:var(--muted);padding:0 .12em}
 .prose .numbers td:last-child{font-weight:400}
 .prose .todo{margin-block:1rem}
 .kapitel h2{color:var(--tief)}
+.kapitel .kapfrage{margin:1.8rem 0;padding:1rem 1.2rem;background:var(--perl);border-left:4px solid var(--moos);font-size:1.3rem;line-height:1.5}
+.kapitel .kapfrage span{display:block;font:600 .72rem/1.35 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--moos);margin-bottom:.35rem}
+.kapitel blockquote{margin:1.4rem 0;padding-left:1.1rem;border-left:2px solid var(--linie)}
+.kapitel blockquote p{font-size:1.2rem}
+.kapitel .mythos{background:var(--perl);border:1px solid var(--linie);border-left:4px solid var(--gold);padding:1rem 1.2rem}
+.kapitel .kasten{margin:2rem 0;padding:1.1rem 1.3rem 1.3rem;background:var(--perl);border:1px solid var(--linie);border-radius:4px}
+.kapitel .kasten h3{margin-top:0;font-size:1.3rem;color:var(--tief)}
+.kapitel .kasten p,.kapitel .kasten li{font-size:1.12rem}
+.kapitel .kasten .table-wrap{margin-block:1rem 0}
+.kapitel .zeilen{font-style:italic;hyphens:manual}
+.kapitel .gebet{margin-top:2.4rem;padding:.2rem 0 1.4rem;border-top:2px solid var(--moos);border-bottom:2px solid var(--moos)}
+.kapitel .gebet h2{margin-top:1.4rem}
+.kapitel .gebet p{font-style:italic}
+.kapitel .quellen{margin-top:2.4rem}
+.kapitel .quellen h2{font-size:1.3rem}
+.kapitel .quellen ol,.kapitel .quellen ul,.kapitel .quellen p{font:400 .95rem/1.55 var(--sans);color:var(--muted)}
+.kapitel .quellen a{overflow-wrap:anywhere}
+.kapitel span.todo{padding:.05rem .4rem;border-left-width:3px}
+.todo.klein{font-size:.85rem}
+.kapitelseite h1 + .todo{margin-top:.6rem}
+.kapitelseite .todo + .todo{margin-top:.5rem}
+.kapitelseite .lead + .todo{margin-top:1.2rem}
+.kapitelseite .blaettern a span{color:var(--moos)}
+.tliste .offen{font-size:1.2rem;line-height:1.35;color:var(--muted)}
 
 /* Online lesen: Wege zum Buch auf den Buchseiten */
 .wege{display:grid;gap:1rem;margin-top:1.6rem}
